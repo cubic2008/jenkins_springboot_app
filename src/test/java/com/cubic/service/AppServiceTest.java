@@ -37,7 +37,7 @@ public class AppServiceTest {
 
 	@Test
 	public void testGreetingForMary() {
-		Greeting expected = new Greeting ("Hello, mary. How are you?");
+		Greeting expected = new Greeting ("Hello, Mary. How are you?");
 		Greeting actual = appService.getGreeting("Mary");
 		expected.setTime(actual.getTime());
 		assertEquals(actual, expected);
