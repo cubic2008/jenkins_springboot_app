@@ -28,15 +28,12 @@ public class AppControlerTest {
 				.andExpect(content().string(equalTo("Greetings from Jenkins Spring Boot App!")));
 	}
 	
-	// change #1
-	// change #2
-	
 	@Autowired
 	private TestRestTemplate template;
 
-    @Test
-    public void getHello() throws Exception {
-        ResponseEntity<String> response = template.getForEntity("/", String.class);
-        assertThat(response.getBody()).isEqualTo("Greetings from Jenkins Spring Boot App!");
-    }
+	@Test
+	public void getHello() throws Exception {
+		ResponseEntity<String> response = template.getForEntity("/", String.class);
+		assertThat(response.getBody()).isEqualTo("Greetings from Jenkins Spring Boot App!");
+	}
 }
