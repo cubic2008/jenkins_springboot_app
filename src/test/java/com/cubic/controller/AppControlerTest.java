@@ -28,6 +28,8 @@ public class AppControlerTest {
 				.andExpect(content().string(equalTo("Greetings from Jenkins Spring Boot App!")));
 	}
 	
+	// change #2
+	
 	@Autowired
 	private TestRestTemplate template;
 
