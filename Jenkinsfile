@@ -2,7 +2,7 @@ pipeline {
     agent any
 
     triggers {
-    pollSCM '* * * * *'
+        pollSCM '* * * * *'
     }
     // tools {
     //     // Install the Maven version configured as "M3" and add it to the path.
@@ -10,9 +10,9 @@ pipeline {
     // }
 
     stages {
-        echo '"Job \'${JOB_NAME}\' (${BUILD_NUMBER}) starts.'
         stage('Checkout') {
             steps {
+                echo '"Job \'${JOB_NAME}\' (${BUILD_NUMBER}) starts.'
                 git branch: 'main', url: 'https://github.com/cubic2008/jenkins_springboot_app.git'
             }
         }
@@ -21,12 +21,16 @@ pipeline {
                 bat "mvn clean package"
             }
         }
-    }
-    post {
-        success {
-            junit '**/target/surefire-reports/TEST-*.xml'
-            archiveArtifacts 'target/*.jar'
+        stage('Post-Build') {
+            steps {
+                post {
+                    success {
+                        junit '**/target/surefire-reports/TEST-*.xml'
+                        archiveArtifacts 'target/*.jar'
+                    }
+                }
+                echo '"Job \'${JOB_NAME}\' (${BUILD_NUMBER}) starts.'
+            }
         }
     }
-    echo '"Job \'${JOB_NAME}\' (${BUILD_NUMBER}) starts.'
 }
