@@ -23,13 +23,13 @@ pipeline {
         }
         stage('Post-Build') {
             steps {
-                post {
-                    success {
-                        junit '**/target/surefire-reports/TEST-*.xml'
-                        archiveArtifacts 'target/*.jar'
-                    }
-                }
                 echo "Job \'${JOB_NAME}\' (${BUILD_NUMBER}) starts."
+            }
+            post {
+                success {
+                    junit '**/target/surefire-reports/TEST-*.xml'
+                    archiveArtifacts 'target/*.jar'
+                }
             }
         }
     }
