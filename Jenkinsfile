@@ -10,6 +10,7 @@ pipeline {
     // }
 
     stages {
+        echo '"Job \'${JOB_NAME}\' (${BUILD_NUMBER}) starts.'
         stage('Checkout') {
             steps {
                 git branch: 'main', url: 'https://github.com/cubic2008/jenkins_springboot_app.git'
@@ -19,12 +20,13 @@ pipeline {
             steps {
                 bat "mvn clean package"
             }
-            post {
-                success {
-                    junit '**/target/surefire-reports/TEST-*.xml'
-                    archiveArtifacts 'target/*.jar'
-                }
+        }
+        post {
+            success {
+                junit '**/target/surefire-reports/TEST-*.xml'
+                archiveArtifacts 'target/*.jar'
             }
         }
+        echo '"Job \'${JOB_NAME}\' (${BUILD_NUMBER}) starts.'
     }
 }
