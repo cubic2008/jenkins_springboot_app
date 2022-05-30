@@ -12,7 +12,7 @@ pipeline {
     stages {
         stage('Checkout') {
             steps {
-                echo '"Job \'${JOB_NAME}\' (${BUILD_NUMBER}) starts.'
+                echo "Job \'${JOB_NAME}\' (${BUILD_NUMBER}) starts."
                 git branch: 'main', url: 'https://github.com/cubic2008/jenkins_springboot_app.git'
             }
         }
@@ -29,7 +29,7 @@ pipeline {
                         archiveArtifacts 'target/*.jar'
                     }
                 }
-                echo '"Job \'${JOB_NAME}\' (${BUILD_NUMBER}) starts.'
+                echo "Job \'${JOB_NAME}\' (${BUILD_NUMBER}) starts."
             }
         }
     }
