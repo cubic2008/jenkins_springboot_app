@@ -26,9 +26,11 @@ pipeline {
                 echo "Job \'${JOB_NAME}\' (${BUILD_NUMBER}) finished."
             }
             post {
-                success {
+                always {
                     junit '**/target/surefire-reports/TEST-*.xml'
                     archiveArtifacts 'target/*.jar'
+                    emailext attachLog: true, body: '''"Job \\\'${JOB_NAME}\\\' (${BUILD_NUMBER}) has completed.
+Please check ${BUILD_URL} for details.''', compressLog: true, subject: '"Job \\\'${JOB_NAME}\\\' (${BUILD_NUMBER}) has completed - ${currentBuild.result}"', to: 'it.college.101@gmail.com'
                 }
             }
         }
