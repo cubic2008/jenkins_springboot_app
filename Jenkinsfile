@@ -23,7 +23,7 @@ pipeline {
         }
         stage('Post-Build') {
             steps {
-                echo "Job \'${JOB_NAME}\' (${BUILD_NUMBER}) starts."
+                echo "Job \'${JOB_NAME}\' (${BUILD_NUMBER}) finished."
             }
             post {
                 success {
